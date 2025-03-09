@@ -1,1 +1,62 @@
-<p>create-user works!</p>
+<section class="container">
+  <h2>Nuevo Usuario</h2>
+  <hr />
+  <form [formGroup]="userForm" (ngSubmit)="confirmCreate()">
+    <div class="mb-3">
+      <label for="first_name" class="form-label">Nombre Usuario</label>
+      <input
+        type="text"
+        id="first_name"
+        class="form-control"
+        formControlName="first_name"
+        placeholder="Introduce el nombre del usuario"
+      />
+      @if(checkControl('first_name','required')){
+      <p class="text-danger me-lg-5">El campo es obligatorio</p>
+
+      } @if(checkControl('first_name','minlength')){
+      <p class="text-danger">El campo tiene que tener al menos 3 caracteres</p>
+      }
+    </div>
+    <div class="mb-3">
+      <label for="last_name" class="form-label">Apellidos Usuario</label>
+      <input
+        type="text"
+        id="last_name"
+        class="form-control"
+        formControlName="last_name"
+        placeholder="Introduce los apellidos del usuario"
+      />
+      @if(checkControl('last_name','required')){
+      <p class="text-danger me-lg-5">El campo es obligatorio</p>
+      }
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email Usuario</label>
+      <input
+        type="text"
+        id="email"
+        class="form-control"
+        formControlName="email"
+        placeholder="Introduce el email del usuario"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="image" class="form-label">Imagen Perfil</label>
+      <input
+        type="text"
+        id="image"
+        class="form-control"
+        formControlName="image"
+        placeholder="Introduce la imagen de perfil del usuario"
+      />
+    </div>
+
+    <input
+      type="submit"
+      value="Enviar"
+      class="btn btn-primary"
+      [disabled]="userForm.invalid"
+    />
+  </form>
+</section>

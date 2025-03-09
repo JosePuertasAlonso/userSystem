@@ -27,4 +27,19 @@ export class UserService {
     let url = `${this.baseUrl}/${id}`;
     return lastValueFrom(this.httpClient.get<IUser>(url));
   }
+
+  deleteById(id: string): Promise<void> {
+    let url = `${this.baseUrl}/${id}`;
+    return lastValueFrom(this.httpClient.delete<void>(url));
+  }
+
+  updateById(id: string, user: IUser): Promise<IUser> {
+    let url = `${this.baseUrl}/${id}`;
+    return lastValueFrom(this.httpClient.put<IUser>(url, user));
+  }
+
+  createUser(user: IUser): Promise<IUser> {
+    let url = `${this.baseUrl}`;
+    return lastValueFrom(this.httpClient.post<IUser>(url, user));
+  }
 }
