@@ -1,0 +1,9 @@
+.users {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.currentPage {
+  background-color: blue;
+}
