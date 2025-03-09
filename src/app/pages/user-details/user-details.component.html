@@ -1,1 +1,30 @@
-<p>user-details works!</p>
+@if(!isLoading){
+<div class="container d-flex gap-5 align-items-center">
+  <figure class="pe-5 border-4 border-end border-dark">
+    <img class="profileImg" [src]="user.image" [alt]="user.first_name" />
+  </figure>
+  <div>
+    <h3>{{ user.first_name }}</h3>
+    <h4>{{ user.last_name }}</h4>
+    <p><strong>Nombre de Usuario: </strong>{{ user.last_name }}</p>
+    <p><strong>Email: </strong>{{ user.email }}</p>
+
+    <div class="d-flex gap-2">
+      <button class="btn btn-outline-danger p-2" (click)="confirmDelete()">
+        Eliminar
+      </button>
+      <button
+        class="btn btn-outline-secondary p-2"
+        [routerLink]="['/updateUser', user._id]"
+      >
+        Actualizar
+      </button>
+      <button class="btn btn-outline-secondary p-2" [routerLink]="['/home']">
+        Volver al Listado
+      </button>
+    </div>
+  </div>
+</div>
+} @else {
+<app-loading></app-loading>
+}

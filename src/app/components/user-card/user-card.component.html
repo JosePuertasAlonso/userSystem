@@ -5,20 +5,20 @@
   <div class="text-center">
     <h4 class="text-black">{{ user.first_name }} {{ user.last_name }}</h4>
   </div>
-  <div class="d-flex mt-3 gap-3">
+  <div class="d-flex mt-3 gap-3 justify-content-center">
     <div [routerLink]="['/user', user._id]" class="actions">
       <figure>
         <img class="iconImg" src="/images/verDetalle.png" alt="" />
       </figure>
       <p>Ver Detalle</p>
     </div>
-    <div class="actions">
+    <div class="actions" [routerLink]="['/updateUser', user._id]">
       <figure>
         <img class="iconImg" src="/images/actualizar.png" alt="" />
       </figure>
       <p>Actualizar</p>
     </div>
-    <div class="actions">
+    <div class="actions" (click)="confirmDelete()">
       <figure>
         <img class="iconImg" src="/images/eliminar.png" alt="" />
       </figure>

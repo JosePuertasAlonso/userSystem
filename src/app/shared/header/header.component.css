@@ -1,5 +1,6 @@
 .logo {
   max-width: 100px;
+  cursor: pointer;
 }
 .navbar-nav .nav-link {
   transition: all 0.3s ease-in-out;
