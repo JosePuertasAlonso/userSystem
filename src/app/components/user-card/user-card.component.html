@@ -1,1 +1,28 @@
-<p>user-card works!</p>
+<div class="card bg-light text-center p-4 h-100 pe-auto profileCard">
+  <figure>
+    <img class="profileImg" [src]="user.image" [alt]="user.first_name" />
+  </figure>
+  <div class="text-center">
+    <h4 class="text-black">{{ user.first_name }} {{ user.last_name }}</h4>
+  </div>
+  <div class="d-flex mt-3 gap-3">
+    <div [routerLink]="['/user', user._id]" class="actions">
+      <figure>
+        <img class="iconImg" src="/images/verDetalle.png" alt="" />
+      </figure>
+      <p>Ver Detalle</p>
+    </div>
+    <div class="actions">
+      <figure>
+        <img class="iconImg" src="/images/actualizar.png" alt="" />
+      </figure>
+      <p>Actualizar</p>
+    </div>
+    <div class="actions">
+      <figure>
+        <img class="iconImg" src="/images/eliminar.png" alt="" />
+      </figure>
+      <p>Eliminar</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+.profileCard {
+  border: 2px solid #003087;
+}
+.profileImg {
+  max-height: 200px;
+  min-height: 200px;
+  border-radius: 50%;
+}
+
+.iconImg {
+  max-height: 40px;
+  min-height: 40px;
+}
+
+.actions {
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+  }
+}

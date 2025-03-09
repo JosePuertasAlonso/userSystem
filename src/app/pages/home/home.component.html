@@ -1,1 +1,33 @@
-<p>home works!</p>
+<section class="users">
+  <div class="container row g-4 flex-wrap justify-content-center">
+    @for(user of arrUsers; track user.id){
+    <article class="col-12 col-md-6 col-xl-3">
+      <app-user-card [user]="user"></app-user-card>
+    </article>
+    }
+  </div>
+
+  <ul class="pagination justify-content-center mt-4">
+    <li class="page-item" [class.disabled]="currentPage === 1">
+      <button
+        class="page-link"
+        (click)="loadUser(currentPage - 1)"
+        [disabled]="currentPage === 1"
+      >
+        <
+      </button>
+    </li>
+    <li class="page-item active">
+      <span class="page-link">{{ currentPage }}</span>
+    </li>
+    <li class="page-item">
+      <button
+        class="page-link"
+        (click)="loadUser(currentPage + 1)"
+        [disabled]="currentPage === maxPage"
+      >
+        >
+      </button>
+    </li>
+  </ul>
+</section>
