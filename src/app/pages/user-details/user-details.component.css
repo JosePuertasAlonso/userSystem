@@ -1,0 +1,5 @@
+.profileImg {
+  max-height: 500px;
+  min-height: 500px;
+  border-radius: 50%;
+}
