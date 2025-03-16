@@ -10,25 +10,13 @@
 
   <ul class="pagination justify-content-center mt-4">
     <li class="page-item" [class.disabled]="currentPage === 1">
-      <button
-        class="page-link"
-        (click)="loadUser(currentPage - 1)"
-        [disabled]="currentPage === 1"
-      >
-        <
-      </button>
+      <button class="page-link" (click)="loadUser(currentPage - 1)"><</button>
     </li>
     <li class="page-item active">
       <span class="page-link">{{ currentPage }}</span>
     </li>
-    <li class="page-item">
-      <button
-        class="page-link"
-        (click)="loadUser(currentPage + 1)"
-        [disabled]="currentPage === maxPage"
-      >
-        >
-      </button>
+    <li class="page-item" [class.disabled]="currentPage === maxPage">
+      <button class="page-link" (click)="loadUser(currentPage + 1)">></button>
     </li>
   </ul>
 </section>

@@ -6,10 +6,10 @@ import { IUser } from '../interfaces/iuser.interface';
   providedIn: 'root',
 })
 export class AlertService {
-  async confirmDelete(user: IUser): Promise<boolean> {
+  async confirmDelete(name: string, lastName: string): Promise<boolean> {
     const result = await Swal.fire({
-      title: `Eliminar ${user.first_name} ${user.last_name}`,
-      text: `¿Estás seguro de que quieres eliminar este ${user.first_name} ${user.last_name}? Esta acción no se puede deshacer.`,
+      title: `Eliminar ${name} ${lastName}`,
+      text: `¿Estás seguro de que quieres eliminar este ${name} ${lastName}? Esta acción no se puede deshacer.`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#d33',
@@ -21,10 +21,10 @@ export class AlertService {
     return result.isConfirmed;
   }
 
-  async confirmUpdate(user: IUser): Promise<boolean> {
+  async confirmUpdate(name: string, lastName: string): Promise<boolean> {
     const result = await Swal.fire({
-      title: `Actualizar ${user.first_name} ${user.last_name}`,
-      text: `¿Estás seguro de que quieres actualizar este usuario: ${user.first_name} ${user.last_name}?`,
+      title: `Actualizar ${name} ${lastName}`,
+      text: `¿Estás seguro de que quieres actualizar este usuario: ${name} ${lastName}?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#32CD32',
@@ -34,5 +34,42 @@ export class AlertService {
     });
 
     return result.isConfirmed;
+  }
+
+  error(text: string) {
+    Swal.fire({
+      title: 'Error',
+      text: text,
+      icon: 'error',
+    });
+  }
+
+  deleteSuccessful(name: string, lastName: string) {
+    Swal.fire({
+      title: 'Eliminado',
+      text: `${name} ${lastName} ha sido eliminado correctamente.`,
+      icon: 'success',
+      timer: 2000,
+      showConfirmButton: false,
+    });
+  }
+
+  updateSuccessful(name: string, lastName: string) {
+    Swal.fire({
+      title: 'Actualizado',
+      text: `${name} ${lastName} ha sido actualizado correctamente.`,
+      icon: 'success',
+      timer: 2000,
+      showConfirmButton: false,
+    });
+  }
+  createSuccessful(name: string, lastName: string) {
+    Swal.fire({
+      title: 'Creado',
+      text: `${name} ${lastName} ha sido creado correctamente.`,
+      icon: 'success',
+      timer: 2000,
+      showConfirmButton: false,
+    });
   }
 }

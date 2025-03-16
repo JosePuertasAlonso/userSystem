@@ -3,6 +3,7 @@ import { IUser } from '../../interfaces/iuser.interface';
 import { UserService } from '../../services/user.service';
 import { UserCardComponent } from '../../components/user-card/user-card.component';
 import { LoadingComponent } from '../../components/loading/loading.component';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,7 @@ import { LoadingComponent } from '../../components/loading/loading.component';
 export class HomeComponent {
   arrUsers: IUser[] = [];
   userService = inject(UserService);
+  alertService = inject(AlertService);
 
   isLoading: boolean = false;
   currentPage: number = 1;
@@ -30,7 +32,9 @@ export class HomeComponent {
       this.maxPage = response.total_pages;
       this.arrUsers = response.results;
     } catch (error) {
-      console.log(error);
+      this.alertService.error(
+        `Hubo un problema al obtener la lista de usuarios`
+      );
     } finally {
       this.isLoading = false;
     }
