@@ -1,33 +1,33 @@
 <section class="container">
-  <h2>Actualizar Usuario</h2>
+  <h2>{{ title }} Usuario</h2>
   <hr />
-  <form [formGroup]="userForm" (ngSubmit)="confirmUpdate()">
+  <form [formGroup]="userForm" (ngSubmit)="getDataForm()">
     <div class="mb-3">
-      <label for="firstName" class="form-label">Nombre Usuario</label>
+      <label for="first_name" class="form-label">Nombre Usuario</label>
       <input
         type="text"
-        id="firstName"
+        id="first_name"
         class="form-control"
-        formControlName="firstName"
+        formControlName="first_name"
         placeholder="Introduce el nombre del usuario"
       />
-      @if(checkControl('firstName','required')){
+      @if(checkControl('first_name','required')){
       <p class="text-danger me-lg-5">El campo es obligatorio</p>
 
-      } @if(checkControl('firstName','minlength')){
+      } @if(checkControl('first_name','minlength')){
       <p class="text-danger">El campo tiene que tener al menos 3 caracteres</p>
       }
     </div>
     <div class="mb-3">
-      <label for="lastName" class="form-label">Apellidos Usuario</label>
+      <label for="last_name" class="form-label">Apellidos Usuario</label>
       <input
         type="text"
-        id="lastName"
+        id="last_name"
         class="form-control"
-        formControlName="lastName"
+        formControlName="last_name"
         placeholder="Introduce los apellidos del usuario"
       />
-      @if(checkControl('lastName','required')){
+      @if(checkControl('last_name','required')){
       <p class="text-danger me-lg-5">El campo es obligatorio</p>
       }
     </div>
@@ -40,6 +40,11 @@
         formControlName="email"
         placeholder="Introduce el email del usuario"
       />
+      @if(checkControl('email','required')){
+      <p class="text-danger me-lg-5">El campo es obligatorio</p>
+      } @if(checkControl('email','email')){
+      <p class="text-danger me-lg-5">No corresponde con un formato email</p>
+      }
     </div>
     <div class="mb-3">
       <label for="image" class="form-label">Imagen Perfil</label>

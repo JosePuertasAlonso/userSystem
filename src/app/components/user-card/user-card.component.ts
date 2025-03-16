@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { AlertService } from '../../services/alert.service';
 import Swal from 'sweetalert2';
+import { IError } from '../../interfaces/ierror.interface';
 
 @Component({
   selector: 'app-user-card',
@@ -18,25 +19,22 @@ export class UserCardComponent {
   router = inject(Router);
 
   async confirmDelete() {
-    const confirmed = await this.alertService.confirmDelete(this.user);
+    const confirmed = await this.alertService.confirmDelete(
+      this.user.first_name,
+      this.user.last_name
+    );
 
     if (confirmed) {
       try {
         await this.userService.deleteById(this.user._id);
+
         this.router.navigate(['/home']);
-        Swal.fire({
-          title: 'Eliminado',
-          text: `${this.user.first_name} ${this.user.last_name} ha sido eliminado correctamente.`,
-          icon: 'success',
-          timer: 2000,
-          showConfirmButton: false,
-        });
-      } catch (error) {
-        Swal.fire({
-          title: 'Error',
-          text: 'Hubo un problema al eliminar el usuario',
-          icon: 'error',
-        });
+        this.alertService.deleteSuccessful(
+          this.user.first_name,
+          this.user.last_name
+        );
+      } catch (error: any) {
+        this.alertService.error(error);
       }
     }
   }

@@ -2,7 +2,6 @@ import { Component, inject, Input } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { IUser } from '../../interfaces/iuser.interface';
 import { Router, RouterLink } from '@angular/router';
-import Swal from 'sweetalert2';
 import { AlertService } from '../../services/alert.service';
 import { LoadingComponent } from '../../components/loading/loading.component';
 
@@ -27,28 +26,34 @@ export class UserDetailsComponent {
   async getUserData(id: string) {
     this.isLoading = true;
     try {
-      let response = await this.userService.getById(id);
+      const response = await this.userService.getById(id);
       this.user = response;
     } catch (error) {
-      console.log(error);
+      this.alertService.error(
+        `Hubo un problema al obtener los datos al usuario`
+      );
     } finally {
       this.isLoading = false;
     }
   }
 
   async confirmDelete() {
-    const confirmed = await this.alertService.confirmDelete(this.user);
+    const confirmed = await this.alertService.confirmDelete(
+      this.user.first_name,
+      this.user.last_name
+    );
 
     if (confirmed) {
       try {
-        await this.userService.deleteById(this.idUser);
+        await this.userService.deleteById(this.user._id);
+
         this.router.navigate(['/home']);
-      } catch (error) {
-        Swal.fire({
-          title: 'Error',
-          text: 'Hubo un problema al eliminar el usuario',
-          icon: 'error',
-        });
+        this.alertService.deleteSuccessful(
+          this.user.first_name,
+          this.user.last_name
+        );
+      } catch (error: any) {
+        this.alertService.error(error);
       }
     }
   }
