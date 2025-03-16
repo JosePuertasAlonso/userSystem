@@ -21,18 +21,27 @@ export class UserFormComponent {
   user!: IUser;
   userService = inject(UserService);
   alertService = inject(AlertService);
-  title: string = 'Nuevo';
+  title: string = 'Registrar';
   router = inject(Router);
 
   userForm: FormGroup = new FormGroup({
-    _id: new FormControl(null, []),
+    _id: new FormControl(null),
     first_name: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
     ]),
-    last_name: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    image: new FormControl(''),
+    last_name: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+    ]),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$'),
+    ]),
+    image: new FormControl('', [
+      Validators.required,
+      Validators.pattern('^(https?:\\/\\/[^\\s]+)$'),
+    ]),
   });
 
   async ngOnInit() {
