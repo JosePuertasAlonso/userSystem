@@ -42,8 +42,8 @@
       />
       @if(checkControl('email','required')){
       <p class="text-danger me-lg-5">El campo es obligatorio</p>
-      } @if(checkControl('email','email')){
-      <p class="text-danger me-lg-5">No corresponde con un formato email</p>
+      } @if(checkControl('email','pattern')){
+      <p class="text-danger me-lg-5">No corresponde con un formato email.</p>
       }
     </div>
     <div class="mb-3">
@@ -55,11 +55,19 @@
         formControlName="image"
         placeholder="Introduce la imagen de perfil del usuario"
       />
+      @if(checkControl('image','required')){
+      <p class="text-danger me-lg-5">El campo es obligatorio</p>
+      } @if(checkControl('image','pattern')){
+      <p class="text-danger me-lg-5">
+        No corresponde con el formato de imagen, Ejemplo:
+        https://example.com/image.png
+      </p>
+      }
     </div>
 
     <input
       type="submit"
-      value="Enviar"
+      [value]="title"
       class="btn btn-primary"
       [disabled]="userForm.invalid"
     />
